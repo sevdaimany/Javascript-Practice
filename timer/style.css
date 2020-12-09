@@ -7,7 +7,8 @@ body {
   font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-  background-color:  #5f5d4f ;
+  background-image: url("pic.jpg");
+  background-size: cover;
 }
 
 
@@ -15,7 +16,7 @@ body {
   position: relative;
   display: inline-block;
   left: 33%;
-  background-color: #868884;
+  background-color: #ffff;
   border-radius: 20px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
@@ -53,7 +54,7 @@ body {
   width: 240px;
   font-size: 90px;
   text-align: center;
-  background-color:  #868884; 
+  background-color:  #ffff; 
 }
 
 .timer button {
