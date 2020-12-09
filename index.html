@@ -3,26 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+  />
+  <link rel="stylesheet" href="style.css">
+
     <title>Document</title>
 </head>
 <body>
-     <svg height = "400" width = " 400">
-        <circle
-         r = "190" 
-         cx = "200"
-         cy = "200"
-         fill="transparent"
-         stroke="orange"
-         stroke-width="15"
-         transform="rotate(-90 200 200)"
-         />
-     </svg>
-    <input id = "duration" value="30" />
-    <button id = "start"><i class="fas fa-play"></i></button>
-    <button id = "pause"><i class="fas fa-pause"></i></button>
-    <script src="timer.js"></script>
+
+    <div class="timer">       
+         <div class="controls">
+            <input id = "duration" value="3" />
+            <div>
+                <button id = "start"><i class="fas fa-play"></i></button>
+                <button id = "pause"><i class="fas fa-pause"></i></button>
+            </div>
+         </div>
+         <svg class="dial">
+            <circle
+             fill="transparent"
+             stroke=" #f3a228"
+             stroke-width="18"
+             r = "190" 
+             cx = "0"
+             cy = "200"
+             transform="rotate(-90 100 100)"
+             />
+         </svg>  
+          
+    </div>
+     <script src="timer.js"></script>
     <script src="index.js"></script>
-    
 </body>
 </html>
