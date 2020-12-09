@@ -8,11 +8,18 @@ class Timer{
         //set event listener
 
         this.startButton.addEventListener('click', this.start);
+        this.pauseButton.addEventListener('click' , this.pause); 
     }
 
     //use arrow func for 'this' problem
     start = () => {
-        console.log(this);
+        this.tick();
+        this.intervalId =  setInterval(this.tick , 1000);
+         
+    }
+
+    pause = () => {
+        clearInterval(this.intervalId); 
     }
 
     tick = () => {
@@ -25,4 +32,4 @@ const durationInput = document.querySelector('#duration');
 const startButton = document.querySelector("#start");
 const pauseButton = document.querySelector("#pause");
 
-const timer = new Timer(durationInput , startButton , pauseButton);
+const timer = new Timer(durationInput , startButton , pauseButton); 
