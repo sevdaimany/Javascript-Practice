@@ -1,0 +1,25 @@
+*{
+margin: 0;
+}
+header {
+    background-image: linear-gradient(rgba(0,0,0,0.6) ,rgba(0,0,0,0.6) ),url("header.jpg") ;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+    color: #fff;
+    font-family: sans-serif;
+}
+
+.moviefight-textbox{
+    padding: 80px;
+    font-size: 72px;
+}
+
+
+.info-textbox{
+    padding: 80px;
+    font-size: 25px;
+    line-height: 120%;
+    color: rgba(255, 255,255, 0.7);
+}
