@@ -23,3 +23,10 @@ header {
     line-height: 120%;
     color: rgba(255, 255,255, 0.7);
 }
+
+.dropdown-item{
+    display: block;
+    height: 60px;
+    cursor: pointer;
+    margin-left: 10px;
+}
