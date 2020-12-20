@@ -24,9 +24,14 @@ header {
     color: rgba(255, 255,255, 0.7);
 }
 
-.dropdown-item{
-    display: block;
+.dropdown-item {
+    display: flex;
+    align-items: center;
     height: 60px;
-    cursor: pointer;
-    margin-left: 10px;
-}
+  }
+  
+  .dropdown-item img {
+    height: 50px;
+    margin-right: 10px;
+  }
+  
