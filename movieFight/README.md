@@ -12,13 +12,13 @@ movie data)
 
 
 
-![github-octocat](https://github.com/sevdaimany/Javascript-Practice/blob/master/movieFight/screenshot1.png)
+![github-octocat](https://github.com/sevdaimany/Javascript-Practice/blob/master/movieFight/screenshot_1.png)
 
-![github-octocat](https://github.com/sevdaimany/Javascript-Practice/blob/master/movieFight/screenshot2.png)
+![github-octocat](https://github.com/sevdaimany/Javascript-Practice/blob/master/movieFight/screenshot_2.png)
 
-![github-octocat](https://github.com/sevdaimany/Javascript-Practice/blob/master/movieFight/screenshot3.png)
+![github-octocat](https://github.com/sevdaimany/Javascript-Practice/blob/master/movieFight/screenshot_3.png)
 
-![github-octocat](https://github.com/sevdaimany/Javascript-Practice/blob/master/movieFight/screenshot4.png)
+![github-octocat](https://github.com/sevdaimany/Javascript-Practice/blob/master/movieFight/screenshot_4.png)
 
 
 
