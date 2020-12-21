@@ -1,6 +1,4 @@
-*{
-margin: 0;
-}
+
 header {
     background-image: linear-gradient(rgba(0,0,0,0.6) ,rgba(0,0,0,0.6) ),url("header.jpg") ;
     background-size: cover;
@@ -13,12 +11,12 @@ header {
 
 .moviefight-textbox{
     padding: 80px;
-    font-size: 72px;
+    font-size: 90px;
 }
 
 
 .info-textbox{
-    padding: 80px;
+    padding:0 80px;
     font-size: 25px;
     line-height: 120%;
     color: rgba(255, 255,255, 0.7);
@@ -43,4 +41,32 @@ header {
   
   .notification {
     margin-top: 20px !important;
+    background-color: #1b1a1b !important;
+
+  }
+
+  
+  main {
+      height: 180vh;
+    background-color: #1b1a1b !important;
+ 
+  }
+
+  .container{
+    background-color: #1b1a1b !important;
+    
+  }
+ 
+
+  .is-primary {
+      background-color: #f72585 !important;
+  }
+
+  .is-warning {
+      background-color: #f5cb5c !important;
+  }
+
+  .searchInfo{
+      margin-top: 150px !important;
+      padding: 30px !important;
   }
