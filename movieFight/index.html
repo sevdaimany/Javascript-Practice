@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
-</head>
+</head> 
 
 <body>
     <header>
@@ -21,8 +21,21 @@
     </header>
     <main>
         <div class="container">
-            <div class="autocomplete"></div>
-            <div id="summary"></div>
+            <div class="columns">
+                <div class="column">
+                    <div id="left-autocomplete"></div>
+                </div>
+
+                <div class="column">
+                    <div id ="right-autocomplete"></div>
+                </div>
+            </div>
+
+            <div class="column is-half notification is-primary tutorial">
+
+                <h1 class="title">Search For a Movie on Both Sides</h1>
+                <p class="subtitle">We will tell you which is best!</p>
+            </div>
         </div>
     </main>
 

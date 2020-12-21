@@ -35,3 +35,12 @@ header {
     margin-right: 10px;
   }
   
+  .tutorial {
+    width: 600px;
+    text-align: center;
+    margin: auto;
+  }
+  
+  .notification {
+    margin-top: 20px !important;
+  }
