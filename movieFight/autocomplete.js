@@ -4,7 +4,7 @@ const createAutoComplete = ({
   onOptionSelect,
   inputValue,
   fetchData,
- }) => {
+}) => {
   root.innerHTML = `
 <label><b>Search</b></label>
 <input class = "input" />
@@ -15,9 +15,9 @@ const createAutoComplete = ({
 </div>
 `;
 
-  const input = document.querySelector ('input');
-  const dropdown = document.querySelector ('.dropdown');
-  const resultsWrapper = document.querySelector ('.results');
+  const input = root.querySelector ('input');
+  const dropdown = root.querySelector ('.dropdown');
+  const resultsWrapper = root.querySelector ('.results');
 
   const onInput = async event => {
     const items = await fetchData (event.target.value);
@@ -35,7 +35,7 @@ const createAutoComplete = ({
       option.classList.add ('dropdown-item');
       option.innerHTML = renderOption (item);
 
-      option.addEventListener ('click', event => {
+      option.addEventListener ('click', () => {
         dropdown.classList.remove ('is-active');
         input.value = inputValue (item);
         onOptionSelect (item);
