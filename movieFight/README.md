@@ -26,7 +26,7 @@ movie data)
 Contributions, issues and feature requests are welcome!
 
 Feel free to check the [issues 
-page](https://github.com/sevdaimany/Varan-Store/issues).
+page](https://github.com/sevdaimany/Javascript-Practice/issues).
 
 ## Show your support
 
