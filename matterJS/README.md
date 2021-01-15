@@ -1,4 +1,4 @@
-# Matter js library
+# MatterJS library
 
 Experiment with matterJS library
 
