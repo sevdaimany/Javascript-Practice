@@ -28,3 +28,10 @@ const walls = [
   Bodies.rectangle (width/2, height, width, 40, {isStatic: true}),
 ];
 World.add(world, walls);
+
+
+//maze generation
+
+const grid = Array(3).fill(null).map(() => Array(3).fill(false));
+
+console.log(grid);
