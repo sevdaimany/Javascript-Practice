@@ -2,15 +2,15 @@ const {Engine, Render, Runner, World, Bodies ,MouseConstraint , Mouse} = Matter;
 
 const engine = Engine.create ();
 const {world} = engine;
-const width = window.innerWidth;
-const height = window.innerHeight;
+const width = window.innerWidth -40;
+const height = window.innerHeight-40;
 
 const render = Render.create ({
   element: document.body,
   engine: engine,
   options: {
     wireframes: false,
-    width,
+    width ,
     height,
   },
 });
