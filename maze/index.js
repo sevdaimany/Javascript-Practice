@@ -7,7 +7,6 @@ const cells = 3;
 const width = 600;
 const height = 600;
 
-
 const render = Render.create ({
   element: document.body,
   engine: engine,
@@ -31,20 +30,17 @@ const walls = [
 ];
 World.add (world, walls);
 
-
-const shuffle = (arr) => {
+const shuffle = arr => {
   let counter = arr.length;
 
-  while(counter > 0){
-
-    const index = Math.floor(Math.random() * counter);
-    counter --;
-    [arr[index] , arr[counter]] = [arr[counter] , arr[index]];
+  while (counter > 0) {
+    const index = Math.floor (Math.random () * counter);
+    counter--;
+    [arr[index], arr[counter]] = [arr[counter], arr[index]];
   }
 
   return arr;
-
-}
+};
 
 //maze generation
 
@@ -69,24 +65,43 @@ const iterateThroughCells = (row, column) => {
   grid[row][column] = true;
 
   //assemble randomly-ordered list of neighbors
-  const neighbors = shuffle([
-    [row - 1, column],
-    [row + 1, column],
-    [row, column - 1],
-    [row, column + 1],
+  const neighbors = shuffle ([
+    [row - 1, column, 'up'],
+    [row + 1, column, 'down'],
+    [row, column - 1, 'left'],
+    [row, column + 1, 'right'],
   ]);
 
-  console.log(neighbors);
-
   //for each neighbor ..
+  for (let neighbor of neighbors) {
+    const [nextRow, nextColumn, direction] = neighbor;
+    //see if that neghbor is out of bounds
+    if (
+      nextRow < 0 ||
+      nextRow >= cells ||
+      nextColumn < 0 ||
+      nextColumn >= cells
+    )
+      continue;
 
-  //see if that neghbor is out of bounds
+    //if we have visited that neighbor continue to next neighbor
+    if (grid[nextRow][nextColumn]) continue;
 
-  //if we have visited that neighbor continue to next neighbor
+    //remove a wall from either horizontals or verticals
+    if (direction === 'left') {
+      verticals[row][column - 1] = true;
+    } else if (direction === 'right') {
+      verticals[row][column] = true;
+    } else if (direction === 'up') {
+      horizontals[row - 1][column] = true;
+    } else if (direction === 'down') {
+      horizontals[row][column] = true;
+    }
 
-  //remove a wall from either horizontals or verticals
+  iterateThroughCells(nextRow,nextColumn);
+  }
 
   //visit that next cell
 };
 
-iterateThroughCells (1, 1);
+iterateThroughCells (startRow, startColumn);
