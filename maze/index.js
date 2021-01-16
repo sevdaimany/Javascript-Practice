@@ -1,12 +1,12 @@
 const {Engine, Render, Runner, World, Bodies} = Matter;
 
-const engine = Engine.create ();
-const {world} = engine;
-
 const cells = 3;
 const width = 600;
 const height = 600;
+const unitLength = width / cells;
 
+const engine = Engine.create ();
+const {world} = engine;
 const render = Render.create ({
   element: document.body,
   engine: engine,
@@ -16,7 +16,6 @@ const render = Render.create ({
     height,
   },
 });
-
 Render.run (render);
 Runner.run (Runner.create (), engine);
 
@@ -54,12 +53,14 @@ const horizontals = Array (cells - 1)
   .fill (null)
   .map (() => Array (cells).fill (false));
 
-const startRow = Math.floor (Math.random * cells);
-const startColumn = Math.floor (Math.random * cells);
+const startRow = Math.floor (Math.random() * cells);
+const startColumn = Math.floor (Math.random()* cells);
 
 const iterateThroughCells = (row, column) => {
   //if i visited the cell at [row, column] then return
-  if (grid[row][column]) return;
+  if (grid[row][column]) {
+    return;
+  }
 
   //Mark this cell as being visited
   grid[row][column] = true;
@@ -81,11 +82,14 @@ const iterateThroughCells = (row, column) => {
       nextRow >= cells ||
       nextColumn < 0 ||
       nextColumn >= cells
-    )
+    ) {
       continue;
+    }
 
     //if we have visited that neighbor continue to next neighbor
-    if (grid[nextRow][nextColumn]) continue;
+    if (grid[nextRow][nextColumn]) {
+      continue;
+    }
 
     //remove a wall from either horizontals or verticals
     if (direction === 'left') {
@@ -98,10 +102,28 @@ const iterateThroughCells = (row, column) => {
       horizontals[row][column] = true;
     }
 
-  iterateThroughCells(nextRow,nextColumn);
+    iterateThroughCells (nextRow, nextColumn);
   }
-
   //visit that next cell
 };
 
 iterateThroughCells (startRow, startColumn);
+
+horizontals.forEach ((row, indexRow) => {
+  row.forEach ((open, indexColumn) => {
+    if (open) {
+      return;
+    }
+
+    const wall = Bodies.rectangle (
+      (indexColumn + 0.5) * unitLength,
+      (indexRow + 1) * unitLength,
+      unitLength,
+      10,
+      {
+        isStatic: true,
+      }
+    );
+    World.add (world, wall);
+  });
+});
