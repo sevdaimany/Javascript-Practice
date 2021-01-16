@@ -1,9 +1,11 @@
 const {Engine, Render, Runner, World, Bodies, Body , Events} = Matter;
 
-const cells = 6 ;
+const cellsHorizontal = 10 ;
+const cellsVertical = 6;
 const width = window.innerWidth;
 const height = window.innerHeight;
-const unitLength = width / cells;
+const unitLengthX = width / cellsHorizontal;
+const unitLengthY = height/ cellsVertical;
 
 const engine = Engine.create ();
 engine.world.gravity.y = 0;
@@ -44,18 +46,18 @@ const shuffle = arr => {
 
 //maze generation
 
-const grid = Array (cells).fill (null).map (() => Array (cells).fill (false));
+const grid = Array (cellsVertical).fill (null).map (() => Array (cellsHorizontal).fill (false));
 
-const verticals = Array (cells)
+const verticals = Array (cellsVertical)
   .fill (null)
-  .map (() => Array (cells - 1).fill (false));
+  .map (() => Array (cellsHorizontal - 1).fill (false));
 
-const horizontals = Array (cells - 1)
+const horizontals = Array (cellsVertical - 1)
   .fill (null)
-  .map (() => Array (cells).fill (false));
+  .map (() => Array (cellsHorizontal).fill (false));
 
-const startRow = Math.floor (Math.random () * cells);
-const startColumn = Math.floor (Math.random () * cells);
+const startRow = Math.floor (Math.random () * cellsVertical);
+const startColumn = Math.floor (Math.random () * cellsHorizontal);
 
 const iterateThroughCells = (row, column) => {
   //if i visited the cell at [row, column] then return
@@ -80,9 +82,9 @@ const iterateThroughCells = (row, column) => {
     //see if that neghbor is out of bounds
     if (
       nextRow < 0 ||
-      nextRow >= cells ||
+      nextRow >= cellsVertical ||
       nextColumn < 0 ||
-      nextColumn >= cells
+      nextColumn >= cellsHorizontal 
     ) {
       continue;
     }
@@ -117,9 +119,9 @@ horizontals.forEach ((row, indexRow) => {
     }
 
     const wall = Bodies.rectangle (
-      (indexColumn + 0.5) * unitLength,
-      (indexRow + 1) * unitLength,
-      unitLength,
+      (indexColumn + 0.5) * unitLengthX,
+      (indexRow + 1) * unitLengthY,
+      unitLengthX,
       10,
       {
         label : 'wall',
@@ -135,10 +137,10 @@ verticals.forEach ((row, indexRow) => {
     if (open) return;
 
     const wall = Bodies.rectangle (
-      (indexColumn + 1) * unitLength,
-      (indexRow + 0.5) * unitLength,
+      (indexColumn + 1) * unitLengthX,
+      (indexRow + 0.5) * unitLengthY,
       10,
-      unitLength,
+      unitLengthY,
       {
         label : 'wall',
         isStatic: true,
@@ -151,10 +153,10 @@ verticals.forEach ((row, indexRow) => {
 // Goal
 
 const goal = Bodies.rectangle (
-  (cells - 0.5) * unitLength,
-  (cells - 0.5) * unitLength,
-  unitLength * 0.7,
-  unitLength * 0.7,
+  (cellsHorizontal - 0.5) * unitLengthX,
+  (cellsVertical - 0.5) * unitLengthY,
+  unitLengthX * 0.7,
+  unitLengthY * 0.7,
   {
     label : 'goal',
     isStatic: true,
@@ -165,10 +167,11 @@ World.add (world, goal);
 
 // Ball
 
+const ballRadius = Math.min(unitLengthX , unitLengthY) /4;
 const ball = Bodies.circle (
-  0.5 * unitLength,
-  0.5 * unitLength,
-  unitLength * 0.25,
+  0.5 * unitLengthX,
+  0.5 * unitLengthY,
+  ballRadius,
   {
     label : 'ball'
   }
