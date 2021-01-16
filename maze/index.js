@@ -1,6 +1,6 @@
 const {Engine, Render, Runner, World, Bodies} = Matter;
 
-const cells = 3;
+const cells = 10;
 const width = 600;
 const height = 600;
 const unitLength = width / cells;
@@ -53,8 +53,8 @@ const horizontals = Array (cells - 1)
   .fill (null)
   .map (() => Array (cells).fill (false));
 
-const startRow = Math.floor (Math.random() * cells);
-const startColumn = Math.floor (Math.random()* cells);
+const startRow = Math.floor (Math.random () * cells);
+const startColumn = Math.floor (Math.random () * cells);
 
 const iterateThroughCells = (row, column) => {
   //if i visited the cell at [row, column] then return
@@ -125,5 +125,22 @@ horizontals.forEach ((row, indexRow) => {
       }
     );
     World.add (world, wall);
+  });
+});
+
+verticals.forEach ((row, indexRow) => {
+  row.forEach ((open, indexColumn) => {
+    if (open) return;
+
+    const wall = Bodies.rectangle (
+      (indexColumn + 1) * unitLength,
+      (indexRow + 0.5) * unitLength,
+      10,
+      unitLength,
+      {
+        isStatic : true
+      }
+    );
+    World.add(world, wall);
   });
 });
