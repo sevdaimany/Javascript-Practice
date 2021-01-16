@@ -14,7 +14,7 @@ const render = Render.create ({
   element: document.body,
   engine: engine,
   options: {
-    wireframes: true,
+    wireframes: false,
     width,
     height,
   },
@@ -126,6 +126,9 @@ horizontals.forEach ((row, indexRow) => {
       {
         label : 'wall',
         isStatic: true,
+        render : {
+          fillStyle : 'red'
+        }
       }
     );
     World.add (world, wall);
@@ -144,6 +147,9 @@ verticals.forEach ((row, indexRow) => {
       {
         label : 'wall',
         isStatic: true,
+        render : {
+          fillStyle : 'red'
+        }
       }
     );
     World.add (world, wall);
@@ -160,6 +166,9 @@ const goal = Bodies.rectangle (
   {
     label : 'goal',
     isStatic: true,
+    render : {
+      fillStyle : 'green'
+    }
   }
 );
 
@@ -173,7 +182,10 @@ const ball = Bodies.circle (
   0.5 * unitLengthY,
   ballRadius,
   {
-    label : 'ball'
+    label : 'ball',
+    render : {
+      fillStyle : 'CornflowerBlue'
+    }
   }
 );
 
