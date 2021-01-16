@@ -145,14 +145,30 @@ verticals.forEach ((row, indexRow) => {
   });
 });
 
+// Goal
+
 const goal = Bodies.rectangle (
   (cells - 0.5) * unitLength,
   (cells - 0.5) * unitLength,
-  unitLength *0.7,
+  unitLength * 0.7,
   unitLength * 0.7,
   {
-    isStatic :true
+    isStatic: true,
   }
 );
 
-World.add(world,goal);
+World.add (world, goal);
+
+// Ball
+
+const ball = Bodies.circle (
+  0.5 * unitLength,
+  0.5 * unitLength,
+  unitLength * 0.25,
+  {
+    isStatic : true
+  }
+);
+
+World.add (world, ball);
+ball.addActionListener()
