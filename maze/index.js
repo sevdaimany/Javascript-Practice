@@ -1,11 +1,11 @@
-const {Engine, Render, Runner, World, Bodies, Body , Events} = Matter;
+const {Engine, Render, Runner, World, Bodies, Body, Events} = Matter;
 
-const cellsHorizontal = 10 ;
-const cellsVertical = 6;
+const cellsHorizontal = 6;
+const cellsVertical = 4;
 const width = window.innerWidth;
 const height = window.innerHeight;
 const unitLengthX = width / cellsHorizontal;
-const unitLengthY = height/ cellsVertical;
+const unitLengthY = height / cellsVertical;
 
 const engine = Engine.create ();
 engine.world.gravity.y = 0;
@@ -46,7 +46,9 @@ const shuffle = arr => {
 
 //maze generation
 
-const grid = Array (cellsVertical).fill (null).map (() => Array (cellsHorizontal).fill (false));
+const grid = Array (cellsVertical)
+  .fill (null)
+  .map (() => Array (cellsHorizontal).fill (false));
 
 const verticals = Array (cellsVertical)
   .fill (null)
@@ -84,7 +86,7 @@ const iterateThroughCells = (row, column) => {
       nextRow < 0 ||
       nextRow >= cellsVertical ||
       nextColumn < 0 ||
-      nextColumn >= cellsHorizontal 
+      nextColumn >= cellsHorizontal
     ) {
       continue;
     }
@@ -124,11 +126,11 @@ horizontals.forEach ((row, indexRow) => {
       unitLengthX,
       10,
       {
-        label : 'wall',
+        label: 'wall',
         isStatic: true,
-        render : {
-          fillStyle : 'red'
-        }
+        render: {
+          fillStyle: 'red',
+        },
       }
     );
     World.add (world, wall);
@@ -145,11 +147,11 @@ verticals.forEach ((row, indexRow) => {
       10,
       unitLengthY,
       {
-        label : 'wall',
+        label: 'wall',
         isStatic: true,
-        render : {
-          fillStyle : 'red'
-        }
+        render: {
+          fillStyle: 'red',
+        },
       }
     );
     World.add (world, wall);
@@ -164,11 +166,11 @@ const goal = Bodies.rectangle (
   unitLengthX * 0.7,
   unitLengthY * 0.7,
   {
-    label : 'goal',
+    label: 'goal',
     isStatic: true,
-    render : {
-      fillStyle : 'green'
-    }
+    render: {
+      fillStyle: 'green',
+    },
   }
 );
 
@@ -176,18 +178,13 @@ World.add (world, goal);
 
 // Ball
 
-const ballRadius = Math.min(unitLengthX , unitLengthY) /4;
-const ball = Bodies.circle (
-  0.5 * unitLengthX,
-  0.5 * unitLengthY,
-  ballRadius,
-  {
-    label : 'ball',
-    render : {
-      fillStyle : 'CornflowerBlue'
-    }
-  }
-);
+const ballRadius = Math.min (unitLengthX, unitLengthY) / 4;
+const ball = Bodies.circle (0.5 * unitLengthX, 0.5 * unitLengthY, ballRadius, {
+  label: 'ball',
+  render: {
+    fillStyle: 'CornflowerBlue',
+  },
+});
 
 World.add (world, ball);
 
@@ -199,7 +196,7 @@ document.addEventListener ('keydown', event => {
     Body.setVelocity (ball, {x, y: y - 5});
   } else if (event.keyCode === 40) {
     //go down
-    Body.setVelocity (ball, {x, y : y +5});
+    Body.setVelocity (ball, {x, y: y + 5});
   } else if (event.keyCode === 39) {
     //go right
     Body.setVelocity (ball, {x: x + 5, y: y});
@@ -211,18 +208,23 @@ document.addEventListener ('keydown', event => {
 
 //Won consition
 
-Events.on(engine , 'collisionStart' , event => {
-  event.pairs.forEach(collision => {
-    const labels = ['ball' , 'goal'];
+Events.on (engine, 'collisionStart', event => {
+  event.pairs.forEach (collision => {
+    const labels = ['ball', 'goal'];
 
-    if(labels.includes(collision.bodyA.label) && labels.includes(collision.bodyB.label)){
+    if (
+      labels.includes (collision.bodyA.label) &&
+      labels.includes (collision.bodyB.label)
+    ) {
       world.gravity.y = 1;
-      world.bodies.forEach(body =>{
-        if(body.label === 'wall'){
-          Body.setStatic(body , false);
+ 
+      document.querySelector ('.winner').classList.remove ('hidden');
+
+      world.bodies.forEach (body => {
+        if (body.label === 'wall') {
+          Body.setStatic (body, false);
         }
       });
     }
-
   });
 });
