@@ -1,6 +1,6 @@
 const {Engine, Render, Runner, World, Bodies} = Matter;
 
-const cells = 10;
+const cells = 3;
 const width = 600;
 const height = 600;
 const unitLength = width / cells;
@@ -22,10 +22,10 @@ Runner.run (Runner.create (), engine);
 //walls
 
 const walls = [
-  Bodies.rectangle (width / 2, 0, width, 40, {isStatic: true}),
-  Bodies.rectangle (0, height / 2, 40, height, {isStatic: true}),
-  Bodies.rectangle (width, height / 2, 40, height, {isStatic: true}),
-  Bodies.rectangle (width / 2, height, width, 40, {isStatic: true}),
+  Bodies.rectangle (width / 2, 0, width, 2, {isStatic: true}),
+  Bodies.rectangle (0, height / 2, 2, height, {isStatic: true}),
+  Bodies.rectangle (width, height / 2, 2, height, {isStatic: true}),
+  Bodies.rectangle (width / 2, height, width, 2, {isStatic: true}),
 ];
 World.add (world, walls);
 
@@ -138,9 +138,21 @@ verticals.forEach ((row, indexRow) => {
       10,
       unitLength,
       {
-        isStatic : true
+        isStatic: true,
       }
     );
-    World.add(world, wall);
+    World.add (world, wall);
   });
 });
+
+const goal = Bodies.rectangle (
+  (cells - 0.5) * unitLength,
+  (cells - 0.5) * unitLength,
+  unitLength *0.7,
+  unitLength * 0.7,
+  {
+    isStatic :true
+  }
+);
+
+World.add(world,goal);
