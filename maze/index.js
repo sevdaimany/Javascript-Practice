@@ -1,7 +1,12 @@
+const {Engine, Render, Runner, World, Bodies, Body, Events} = Matter;
+const engine = Engine.create ();
+const {world} = engine;
+let render;
+let runner;
+
 maze ();
 
 function maze () {
-  const {Engine, Render, Runner, World, Bodies, Body, Events} = Matter;
 
   const cellsHorizontal = 14;
   const cellsVertical = 10;
@@ -10,10 +15,8 @@ function maze () {
   const unitLengthX = width / cellsHorizontal;
   const unitLengthY = height / cellsVertical;
 
-  const engine = Engine.create ();
   engine.world.gravity.y = 0;
-  const {world} = engine;
-  const render = Render.create ({
+  render = Render.create ({
     element: document.body,
     engine: engine,
     options: {
@@ -23,7 +26,8 @@ function maze () {
     },
   });
   Render.run (render);
-  Runner.run (Runner.create (), engine);
+  runner = Runner.create();
+  Runner.run (runner, engine);
 
   //walls
 
@@ -225,13 +229,17 @@ function maze () {
         labels.includes (collision.bodyB.label)
       ) {
         world.gravity.y = 1;
-
         document.querySelector ('.winner').classList.remove ('hidden');
         document.querySelector ('button').addEventListener ('click', event => {
-          render.canvas.remove ();
-          render.canvas = null;
-          render.context = null;
-          render.textures = {};
+          event.preventDefault();
+            World.clear(world);
+            Engine.clear(engine);
+            Render.stop(render);
+            Runner.stop(runner);
+            render.canvas.remove();
+            render.canvas = null;
+            render.context = null;
+            render.textures = {};
           document.querySelector ('.winner').classList.add('hidden');
           maze ();
         });
